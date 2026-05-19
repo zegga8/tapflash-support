@@ -5,31 +5,250 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TapFlash Support & Privacy</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; max-width: 600px; margin: 40px auto; padding: 0 20px; color: #333; }
-        h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 10px; }
-        h2 { margin-top: 30px; }
-        .email { font-weight: bold; color: #007aff; }
+        /*
+         * TapFlash Application Theme Styling
+         * Base Colors: Deep Gradient (Dark Purple to Black), Neon Yellow, Neon Orange, Neon Purple.
+         * Stylistic Elements: Glows, Rounded Corners, Clean Typography.
+         */
+
+        :root {
+            --bg-start: #100010; /* Deep Dark Purple */
+            --bg-end: #000000;   /* Deep Black */
+            --text-main: #ffffff; /* Readable White */
+            --neon-yellow: #f5f542; /* Lightning color */
+            --neon-orange: #ff8c00; /* Button color */
+            --neon-purple: #cc00cc; /* App name glow color */
+            --panel-bg: #1a1a1a;   /* Subtle panel color (like high score box) */
+            --panel-border: #333;  /* Panel boundary */
+            --accent-glow: 0 0 10px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-main);
+            background: radial-gradient(circle at top, var(--bg-start), var(--bg-end));
+            line-height: 1.6;
+            text-align: center; /* Default text center-aligned */
+        }
+
+        /* Container for central layout and content constraints */
+        .page-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* Header Navigation for quickly jumping between sections */
+        .nav-bar {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .nav-button {
+            display: inline-block;
+            background: var(--neon-orange);
+            color: #000000;
+            font-weight: bold;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 20px;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 1.5px;
+            box-shadow: 0 4px 10px rgba(255, 140, 0, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(255, 140, 0, 0.6);
+        }
+
+        /* Main app header section */
+        .app-header {
+            margin-bottom: 80px;
+        }
+
+        /* Lightning Bolt Logo with Neon Yellow Glow */
+        .lightning-bolt {
+            font-size: 4em;
+            color: var(--neon-yellow);
+            text-shadow: var(--accent-glow) var(--neon-yellow);
+            margin-bottom: 20px;
+        }
+
+        /* "TapFlash" Main Title with Neon Purple Glow */
+        .app-title {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 0 0 10px;
+            text-shadow: var(--accent-glow) var(--neon-purple);
+        }
+
+        /* Smaller Subtitle */
+        .app-subtitle {
+            font-size: 1em;
+            color: var(--panel-border);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+
+        /* Main Content Panels (rounded containers for sections) */
+        .content-panel {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 50px;
+            text-align: left; /* Text inside panels is left-aligned for readability */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Stylized Headers within panels (Support, Privacy Policy) */
+        h2 {
+            font-size: 2em;
+            margin-top: 0;
+            color: var(--text-main);
+            text-shadow: var(--accent-glow) var(--neon-purple);
+            border-bottom: 1px solid var(--neon-purple);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        /* Contact Section Details */
+        .support-info {
+            font-size: 1.1em;
+            color: var(--text-main);
+        }
+
+        /* Make the email prominent with glowing orange highlight */
+        .email-highlight {
+            font-weight: bold;
+            color: var(--neon-orange);
+            font-size: 1.2em;
+            text-shadow: var(--accent-glow) var(--neon-orange);
+        }
+
+        /* Privacy Policy detailed text and bullet points */
+        .privacy-info ul {
+            padding-left: 20px;
+            color: #eaeaea;
+        }
+
+        .privacy-info li {
+            margin-bottom: 12px;
+        }
+
+        /* Standard Subheadings inside text */
+        h3 {
+            font-size: 1.4em;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            color: var(--neon-yellow);
+            text-shadow: 0 0 5px var(--neon-yellow);
+        }
+
+        /* Custom stylized horizontal divider between sections */
+        hr.neon-divider {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--neon-purple), transparent);
+            margin: 70px 0;
+            box-shadow: 0 0 8px var(--neon-purple);
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 600px) {
+            .page-container {
+                padding: 40px 15px;
+            }
+            .app-title {
+                font-size: 2.2em;
+            }
+            .nav-bar {
+                flex-direction: column;
+                gap: 15px;
+                margin-bottom: 40px;
+            }
+            .content-panel {
+                padding: 30px 20px;
+            }
+            h2 {
+                font-size: 1.6em;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <h1>TapFlash</h1>
-    <p>Brought to you by MB Olten Technologies.</p>
+    <div class="page-container">
 
-    <h2>Support & Contact</h2>
-    <p>Have questions, feedback, or found a bug in TapFlash? We are here to help! Please reach out to us directly via email:</p>
-    <p class="email">hey@olten.tech</p>
+        <div class="nav-bar">
+            <a href="#support" class="nav-button">Get Support</a>
+            <a href="#privacy" class="nav-button">Privacy Policy</a>
+        </div>
 
-    <hr>
+        <header class="app-header">
+            <div class="lightning-bolt" aria-label="TapFlash Logo">⚡️</div>
+            <h1 class="app-title">TapFlash</h1>
+            <p class="app-subtitle">Speed & Reflex Game</p>
+            <p>Brought to you by MB Olten Technologies.</p>
+        </header>
 
-    <h2>Privacy Policy</h2>
-    <p><strong>Effective Date:</strong> May 2026</p>
-    <p>Your privacy is critically important to us. TapFlash is designed with a privacy-first approach:</p>
-    <ul>
-        <li><strong>No Data Collection:</strong> TapFlash does not collect, store, track, or transmit any personal information, analytics, or user identifiers.</li>
-        <li><strong>Local Storage Only:</strong> Your game progression and high scores are stored entirely locally on your own device using standard iOS local storage (UserDefaults). This data never leaves your device.</li>
-        <li><strong>Offline Functionality:</strong> The game runs fully offline and requires no internet access or account registration.</li>
-    </ul>
+        <section id="support" class="content-panel support-info">
+            <h2>TapFlash Support</h2>
+            <p>Have questions, feedback, or found a bug in TapFlash? We are here to help! Our team is dedicated to improving your reaction training experience.</p>
+            <p>Please reach out to us directly via email:</p>
+            <p><a href="mailto:support@oltentech.com" class="email-highlight">support@oltentech.com</a></p>
+            <p>We typically respond within 1-2 business days.</p>
+        </section>
+
+        <hr class="neon-divider" />
+
+        <section id="privacy" class="content-panel privacy-info">
+            <h2>Privacy Policy</h2>
+            <p><strong>Effective Date:</strong> May 20, 2026</p>
+            
+            <p>Your privacy is critically important to us. TapFlash is designed with a privacy-first approach. We understand that quick reaction time shouldn't require your personal details. This policy outlines exactly what we do and do not handle.</p>
+            
+            <h3>No Data Collection & Usage</h3>
+            <p>The core philosophy of TapFlash is respect for user privacy. Therefore:</p>
+            <ul>
+                <li><strong>No Personal Data:</strong> TapFlash does not collect, store, track, or transmit any personal information (such as your name, contact details, or financial data).</li>
+                <li><strong>No Analytics:</strong> We do not track how many levels you play, how many points you score, or any specific app usage patterns using third-party analytics services.</li>
+                <li><strong>No Identifiers:</strong> We do not collect device serial numbers, advertising IDs, or any persistent unique identifiers.</li>
+            </ul>
+            
+            <h3>Local Data Storage Only</h3>
+            <p>The only data generated by your gameplay is your score progression and high score. This data is handled in a completely local manner:</p>
+            <ul>
+                <li><strong>Local Storage:</strong> Your game progression and high scores are stored entirely locally on your own device using standard iOS local storage (UserDefaults).</li>
+                <li><strong>Data Ownership:</strong> This data never leaves your device. We have no access to your scores, and they are not transmitted to any server.</li>
+                <li><strong>Deletion:</strong> You are the owner of this data. Uninstalling TapFlash will remove this locally stored high-score information from your device.</li>
+            </ul>
+
+            <h3>Full Offline Functionality</h3>
+            <p>TapFlash is designed to work fully offline. The application requires no internet access, and we do not provide a way to register for accounts or login. No data is synchronized across devices.</p>
+
+            <h3>Data Security</h3>
+            <p>Since we do not collect, transmit, or process any of your data, there is no risk of a data breach on our part. Your local data is secured by your device’s own operating system and physical security.</p>
+
+            <h3>Policy Updates</h3>
+            <p>We may update this privacy policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. You are advised to review this policy periodically for any changes. Changes to this privacy policy are effective when they are posted on this page.</p>
+
+            <h3>Acceptance of Terms</h3>
+            <p>By using TapFlash, you accept the practices described in this privacy policy.</p>
+
+            <h3>Contact Us</h3>
+            <p>If you have any questions or concerns regarding this policy, please contact us at <a href="mailto:privacy@oltentech.com" class="email-highlight">privacy@oltentech.com</a>.</p>
+        </section>
+
+    </div>
 
 </body>
 </html>
